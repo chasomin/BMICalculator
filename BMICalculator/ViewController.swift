@@ -111,21 +111,16 @@ class ViewController: UIViewController {
         if sender == heightTextField {
             if text < 100 || text > 300{
                 resultButton.isEnabled = false
-                heightLabel.text = "키는 100cm 이상, 300cm 이하까지 입력 가능합니다."
-                heightLabel.textColor = .red
-                heightLabel.font = .systemFont(ofSize: 12)
+                designHeightWeightLabelDisabled(heightLabel, text: "키는 100cm 이상, 300cm 이하까지 입력 가능합니다.")
             } else {
                 designHeightWeightLabel(heightLabel, text: "키가 어떻게 되시나요?")
             }
         } else if sender == weightTextField {
             if text < 20 || text > 300{
                 resultButton.isEnabled = false
-                weightLabel.text = "몸무게는 20kg 이상, 300kg 이하까지만 입력 가능합니다."
-                weightLabel.textColor = .red
-                weightLabel.font = .systemFont(ofSize: 12)
+                designHeightWeightLabelDisabled(weightLabel, text: "몸무게는 20kg 이상, 300kg 이하까지만 입력 가능합니다.")
             } else {
                 designHeightWeightLabel(weightLabel, text: "몸무게는 어떻게 되시나요?")
-
             }
         }
     }
@@ -176,6 +171,12 @@ class ViewController: UIViewController {
         resultButton.setTitleColor(.white, for: .normal)
         resultButton.layer.cornerRadius = 10
         resultButton.backgroundColor = .myPurple
+    }
+    
+    func designHeightWeightLabelDisabled(_ label: UILabel, text: String) {
+        label.text = text
+        label.textColor = .red
+        label.font = .systemFont(ofSize: 12)
     }
     
     func calculatorBMI(height: Double, weight: Double) -> Double {
