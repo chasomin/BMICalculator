@@ -62,9 +62,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xvo-1c-5hh">
-                                <rect key="frame" x="20" y="538.33333333333337" width="353" height="40"/>
+                                <rect key="frame" x="20" y="538.33333333333337" width="353" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="xIT-oK-DYb"/>
+                                    <constraint firstAttribute="height" constant="50" id="xIT-oK-DYb"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button"/>
