@@ -17,7 +17,7 @@ import UIKit
 
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var explanationLabel: UILabel!
     
@@ -31,10 +31,14 @@ class ViewController: UIViewController {
     
     @IBOutlet var resultButton: UIButton!
     
+    @IBOutlet var privateButton: UIButton!
+    
+    
     var result: Double = 0
     var resultText = ""
-
-
+    var isPrivate = false
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         designTitleLabel()
@@ -42,11 +46,11 @@ class ViewController: UIViewController {
         designRandomButton()
         designTextField(heightTextField)
         designTextField(weightTextField)
-
+        
         designHeightWeightLabel(heightLabel, text: "키가 어떻게 되시나요?")
         designHeightWeightLabel(weightLabel, text: "몸무게는 어떻게 되시나요?")
         designResultButton()
-
+        designPrivateButton(isPrivate: isPrivate)
     }
     
     @IBAction func keyboardDismiss(_ sender: Any) {
@@ -69,9 +73,6 @@ class ViewController: UIViewController {
         alert.addAction(checkButton)
         alert.addAction(cancelButton)
         present(alert, animated: true)
-        
-
-
     }
     
     @IBAction func randomButtonTapped(_ sender: UIButton) {
@@ -82,7 +83,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func inputUserText(_ sender: UITextField) {
-
+        
         if heightTextField.text == "" || weightTextField.text == "" {
             resultButton.isEnabled = false
         } else {
@@ -96,9 +97,9 @@ class ViewController: UIViewController {
         if weightTextField.text == "" {
             designHeightWeightLabel(weightLabel, text: "몸무게는 어떻게 되시나요?")
         }
-            
-            
-            
+        
+        
+        
         guard let text = sender.text else {
             print("===옵셔널 바인딩 실패")
             return
@@ -128,11 +129,22 @@ class ViewController: UIViewController {
         }
     }
     
-
     
-
+    @IBAction func privateTapped(_ sender: UIButton) {
+        isPrivate.toggle()
+        if isPrivate {
+            weightTextField.isSecureTextEntry = true
+            designPrivateButton(isPrivate: true)
+            
+        } else {
+            weightTextField.isSecureTextEntry = false
+            designPrivateButton(isPrivate: false)
+        }
+    }
     
-
+    
+    
+    
     
     func designTitleLabel() {
         titleLabel.font = .boldSystemFont(ofSize: 25)
@@ -154,7 +166,7 @@ class ViewController: UIViewController {
         randomButton.setTitleColor(.red, for: .normal)
         randomButton.titleLabel?.font = .systemFont(ofSize: 13)
     }
-
+    
     func designTextField(_ textField: UITextField) {
         textField.borderStyle = .none
         textField.layer.cornerRadius = 15
@@ -180,6 +192,16 @@ class ViewController: UIViewController {
         label.text = text
         label.textColor = .red
         label.font = .systemFont(ofSize: 12)
+    }
+    
+    func designPrivateButton(isPrivate: Bool) {
+        privateButton.setTitle("", for: .normal)
+        if isPrivate {
+            privateButton.setImage(UIImage(systemName: "eye"), for: .normal)
+        } else {
+            privateButton.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        }
+        privateButton.tintColor = .lightGray
     }
     
     func calculatorBMI(height: Double, weight: Double) -> Double {

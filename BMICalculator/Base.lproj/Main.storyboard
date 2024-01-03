@@ -86,12 +86,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJG-qh-PqE">
+                                <rect key="frame" x="328" y="403.33333333333331" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="wJG-qh-PqE" secondAttribute="height" id="ItG-IM-nXU"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="privateTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="R6R-vr-r62"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="tlb-5I-QDx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="7sg-I5-4tc"/>
+                            <constraint firstItem="28b-xx-8pe" firstAttribute="trailing" secondItem="wJG-qh-PqE" secondAttribute="trailing" id="Bjl-FF-26Z"/>
                             <constraint firstItem="T5K-B7-U2U" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="BzB-AD-O6d"/>
                             <constraint firstItem="JXs-SP-e6t" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="G9Z-dG-Gd8"/>
                             <constraint firstItem="yrZ-Gh-pmP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="NQz-Wm-xGW"/>
@@ -101,7 +113,10 @@
                             <constraint firstItem="Hum-NG-oqh" firstAttribute="top" secondItem="28b-xx-8pe" secondAttribute="bottom" constant="20" id="ZNW-mK-rq2"/>
                             <constraint firstItem="JXs-SP-e6t" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="aPd-yQ-gg4"/>
                             <constraint firstItem="iii-A1-rxz" firstAttribute="top" secondItem="tlb-5I-QDx" secondAttribute="bottom" constant="10" id="ayZ-YV-VGu"/>
+                            <constraint firstItem="wJG-qh-PqE" firstAttribute="top" secondItem="28b-xx-8pe" secondAttribute="top" id="bDE-r9-nyq"/>
+                            <constraint firstItem="28b-xx-8pe" firstAttribute="bottom" secondItem="wJG-qh-PqE" secondAttribute="bottom" id="hGi-G4-ubJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iii-A1-rxz" secondAttribute="trailing" constant="20" id="hYs-Nm-sXB"/>
+                            <constraint firstItem="28b-xx-8pe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="hZ7-VS-aQh"/>
                             <constraint firstItem="28b-xx-8pe" firstAttribute="top" secondItem="dVv-Im-nSD" secondAttribute="bottom" constant="10" id="i34-yv-akB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Hum-NG-oqh" secondAttribute="trailing" constant="25" id="ihU-w4-w68"/>
                             <constraint firstItem="T5K-B7-U2U" firstAttribute="top" secondItem="yrZ-Gh-pmP" secondAttribute="bottom" id="ip7-Cn-Psa"/>
@@ -121,6 +136,7 @@
                         <outlet property="explanationLabel" destination="T5K-B7-U2U" id="e7m-X2-YYm"/>
                         <outlet property="heightLabel" destination="tlb-5I-QDx" id="DYZ-tt-Veu"/>
                         <outlet property="heightTextField" destination="iii-A1-rxz" id="r2q-31-T2y"/>
+                        <outlet property="privateButton" destination="wJG-qh-PqE" id="NmH-L9-yw0"/>
                         <outlet property="randomButton" destination="Hum-NG-oqh" id="kdf-Z3-Eqb"/>
                         <outlet property="resultButton" destination="xvo-1c-5hh" id="0gM-dW-imv"/>
                         <outlet property="titleLabel" destination="yrZ-Gh-pmP" id="mSE-Rp-ehY"/>
