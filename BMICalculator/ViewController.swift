@@ -88,6 +88,8 @@ class ViewController: UIViewController {
         } else {
             resultButton.isEnabled = true
         }
+        
+        
         if heightTextField.text == "" {
             designHeightWeightLabel(heightLabel, text: "키가 어떻게 되시나요?")
         }
@@ -104,6 +106,7 @@ class ViewController: UIViewController {
         
         guard let text = Int(text) else {
             sender.text = ""
+            resultButton.isEnabled = false
             return
         }
         print("\(text)")
