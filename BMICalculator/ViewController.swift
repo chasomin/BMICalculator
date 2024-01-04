@@ -93,7 +93,13 @@ class ViewController: UIViewController {
             result = calculatorBMI(height: height, weight: weight)
         }
         resultText = BMIText(result: result)
-        let alert = UIAlertController(title: "당신의 BMI 지수", message: "\(String(format: "%.2f", result)) \(resultText)", preferredStyle: .alert)
+        var title = ""
+        if UserDefaults.standard.string(forKey: "nickname") == "" {
+            title = "당신의 BMI 지수"
+        } else {
+            title = "\(UserDefaults.standard.string(forKey: "nickname")!)님의 BMI 지수"
+        }
+        let alert = UIAlertController(title: title, message: "\(String(format: "%.2f", result)) \(resultText)", preferredStyle: .alert)
         let checkButton = UIAlertAction(title: "확인", style: .default)
         let cancelButton = UIAlertAction(title: "닫기", style: .cancel)
         alert.addAction(checkButton)
