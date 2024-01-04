@@ -39,7 +39,7 @@ class ViewController: UIViewController {
     
     var result: Double = 0
     var resultText = ""
-    var isPrivate = false
+    var isPrivate = UserDefaults.standard.bool(forKey: "private")
     
     
     override func viewDidLoad() {
@@ -61,7 +61,6 @@ class ViewController: UIViewController {
         weightTextField.text = UserDefaults.standard.string(forKey: "weight")
         
         resultButton.isEnabled = checkTextfieldEmpty()
-
     }
     
     @IBAction func nicknameTextFieldReturnTapped(_ sender: UITextField) {
@@ -106,6 +105,9 @@ class ViewController: UIViewController {
         heightTextField.text = "\(Int.random(in: 150...190))"
         weightTextField.text = "\(Int.random(in: 30...100))"
         resultButton.isEnabled = true
+        
+        UserDefaults.standard.set(heightTextField.text!, forKey: "height")
+        UserDefaults.standard.set(weightTextField.text!, forKey: "weight")
     }
     
     
@@ -155,13 +157,14 @@ class ViewController: UIViewController {
     @IBAction func privateTapped(_ sender: UIButton) {
         isPrivate.toggle()
         if isPrivate {
-            weightTextField.isSecureTextEntry = true
-            designPrivateButton(isPrivate: true)
+            weightTextField.isSecureTextEntry = isPrivate
+            designPrivateButton(isPrivate: isPrivate)
             
         } else {
-            weightTextField.isSecureTextEntry = false
-            designPrivateButton(isPrivate: false)
+            weightTextField.isSecureTextEntry = isPrivate
+            designPrivateButton(isPrivate: isPrivate)
         }
+        UserDefaults.standard.set(isPrivate, forKey: "private")
     }
     
     @IBAction func resetButtonTapped(_ sender: UIButton) {
@@ -238,8 +241,10 @@ class ViewController: UIViewController {
         privateButton.setTitle("", for: .normal)
         if isPrivate {
             privateButton.setImage(UIImage(systemName: "eye"), for: .normal)
+            weightTextField.isSecureTextEntry = isPrivate
         } else {
             privateButton.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+            weightTextField.isSecureTextEntry = isPrivate
         }
         privateButton.tintColor = .lightGray
     }
