@@ -33,6 +33,9 @@ class ViewController: UIViewController {
     
     @IBOutlet var privateButton: UIButton!
     
+    @IBOutlet var nicknameTextField: UITextField!
+    
+    @IBOutlet var resetButton: UIButton!
     
     var result: Double = 0
     var resultText = ""
@@ -46,15 +49,39 @@ class ViewController: UIViewController {
         designRandomButton()
         designTextField(heightTextField)
         designTextField(weightTextField)
+        designResetButton()
         
         designHeightWeightLabel(heightLabel, text: "키가 어떻게 되시나요?")
         designHeightWeightLabel(weightLabel, text: "몸무게는 어떻게 되시나요?")
         designResultButton()
         designPrivateButton(isPrivate: isPrivate)
+        
+        nicknameTextField.text = UserDefaults.standard.string(forKey: "nickname")
+        heightTextField.text = UserDefaults.standard.string(forKey: "height")
+        weightTextField.text = UserDefaults.standard.string(forKey: "weight")
+        
+        resultButton.isEnabled = checkTextfieldEmpty()
+
     }
+    
+    @IBAction func nicknameTextFieldReturnTapped(_ sender: UITextField) {
+        UserDefaults.standard.set(nicknameTextField.text!, forKey: "nickname")
+    }
+    
+    @IBAction func heightTextFieldReturnTapped(_ sender: UITextField) {
+        UserDefaults.standard.set(heightTextField.text!, forKey: "height")
+    }
+    
+    @IBAction func weightTextFieldReturnTapped(_ sender: UITextField) {
+        UserDefaults.standard.set(weightTextField.text!, forKey: "weight")
+    }
+    
     
     @IBAction func keyboardDismiss(_ sender: Any) {
         view.endEditing(true)
+        UserDefaults.standard.set(nicknameTextField.text!, forKey: "nickname")
+        UserDefaults.standard.set(heightTextField.text!, forKey: "height")
+        UserDefaults.standard.set(weightTextField.text!, forKey: "weight")
     }
     
     //체질량지수는 자신의 몸무게(kg)를 키의 제곱(m)으로 나눈 값
@@ -84,12 +111,7 @@ class ViewController: UIViewController {
     
     @IBAction func inputUserText(_ sender: UITextField) {
         
-        if heightTextField.text == "" || weightTextField.text == "" {
-            resultButton.isEnabled = false
-        } else {
-            resultButton.isEnabled = true
-        }
-        
+        resultButton.isEnabled = checkTextfieldEmpty()
         
         if heightTextField.text == "" {
             designHeightWeightLabel(heightLabel, text: "키가 어떻게 되시나요?")
@@ -142,6 +164,15 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func resetButtonTapped(_ sender: UIButton) {
+        UserDefaults.standard.set("", forKey: "nickname")
+        UserDefaults.standard.set("", forKey: "height")
+        UserDefaults.standard.set("", forKey: "weight")
+        
+        nicknameTextField.text = UserDefaults.standard.string(forKey: "nickname")
+        heightTextField.text = UserDefaults.standard.string(forKey: "height")
+        weightTextField.text = UserDefaults.standard.string(forKey: "weight")
+    }
     
     
     
@@ -163,8 +194,15 @@ class ViewController: UIViewController {
     
     func designRandomButton() {
         randomButton.setTitle("랜덤으로 BMI 계산하기", for: .normal)
-        randomButton.setTitleColor(.red, for: .normal)
+        randomButton.setTitleColor(.myPurple, for: .normal)
         randomButton.titleLabel?.font = .systemFont(ofSize: 13)
+    }
+    
+    func designResetButton() {
+        resetButton.setTitleColor(.white, for: .normal)
+        resetButton.titleLabel?.font = .systemFont(ofSize: 13)
+        resetButton.layer.cornerRadius = 10
+        resetButton.backgroundColor = .myPurple
     }
     
     func designTextField(_ textField: UITextField) {
@@ -220,5 +258,15 @@ class ViewController: UIViewController {
         }
         return "예외"
     }
+    
+    func checkTextfieldEmpty() -> Bool{
+        if heightTextField.text == "" || weightTextField.text == "" {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+
 }
 
