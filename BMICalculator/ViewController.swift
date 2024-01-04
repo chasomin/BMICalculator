@@ -172,6 +172,8 @@ class ViewController: UIViewController {
         nicknameTextField.text = UserDefaults.standard.string(forKey: "nickname")
         heightTextField.text = UserDefaults.standard.string(forKey: "height")
         weightTextField.text = UserDefaults.standard.string(forKey: "weight")
+        
+        resultButton.isEnabled = false
     }
     
     
